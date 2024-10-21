@@ -1,21 +1,5 @@
-# This is a basic workflow to help you get started with Actions
 
-name: Mobile
-
-# Controls when the action will run. 
-on:
-  # Triggers the workflow on push or pull request events but only for the master branch
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
-jobs:
- Mobile:
+  Mobile:
     runs-on: ${{matrix.os}}
     strategy:
       fail-fast: false
@@ -32,24 +16,22 @@ jobs:
 
       - name: Install Libraries
         run: |
-          haxelib git hxcpp https://github.com/mcagabe19-stuff/hxcpp 8dd30d69399f616f4e85295ce3f828219b78af17 --quiet
-          haxelib git lime https://github.com/mcagabe19-stuff/lime --quiet
-          haxelib install openfl 9.2.2 --quiet
-          haxelib install flixel 5.2.2 --quiet
-          haxelib install flixel-addons 2.10.0 --quiet
-          haxelib install flixel-tools 1.5.1 --quiet
-          haxelib install flixel-ui 2.5.0 --quiet
-          haxelib install json2object
-          haxelib install hxCodec
-          haxelib install tjson 1.4.0 --quiet
-          haxelib install flxanimate 3.0.4 --quiet
+          haxelib git hxcpp https://github.com/mcagabe19-stuff/hxcpp.git
+          haxelib git lime https://github.com/mcagabe19-stuff/lime
+          haxelib install openfl 9.2.2
+          haxelib install flixel 5.2.2
+          haxelib install flixel-tools 1.5.1
+          haxelib install flixel-ui 2.5.0
+          haxelib install flixel-addons 2.10.0
+          haxelib install tjson
           haxelib install away3d
+          haxelib install hxvlc 1.7.1
+          haxelib install hxjsonast
           haxelib install hscript
-          haxelib install discord_rpc
-          haxelib git hxvlc https://github.com/MAJigsaw77/hxvlc 70e7f5f3e76d526ac6fb8f0e6665efe7dfda589d --quiet --skip-dependencies
-          haxelib git linc_luajit https://github.com/mcagabe19-stuff/linc_luajit-rewriten main --quiet
-          haxelib git hxdiscord_rpc https://github.com/MAJigsaw77/hxdiscord_rpc 3538a1c2bb07b04208cd014220207f8173acdb21 --quiet --skip-dependencies
-          haxelib git extension-androidtools https://github.com/MAJigsaw77/extension-androidtools df9dfd0cda74e5460ae3afcfff1081c50959ed4a --quiet --skip-dependencies
+          haxelib install flxanimate 3.0.4
+          haxelib git linc_luajit https://github.com/mcagabe19-stuff/linc_luajit-rewriten
+          haxelib install extension-androidtools
+          haxelib install hxcpp-debug-server
       - name: Configure Android
         if: startsWith(matrix.os, 'ubuntu')
         run: |
@@ -87,3 +69,4 @@ jobs:
           name: iOSBuild
           path: export/release/ios/build/Release-iphoneos/*.ipa
           if-no-files-found: error
+
