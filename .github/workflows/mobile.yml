@@ -49,6 +49,7 @@ jobs:
           haxelib install hscript
           haxelib install flxanimate 3.0.4
           haxelib git linc_luajit https://github.com/mcagabe19-stuff/linc_luajit-rewriten
+          haxelib install discord_rpc
           haxelib install extension-androidtools
           haxelib install hxcpp-debug-server
       - name: Configure Android
